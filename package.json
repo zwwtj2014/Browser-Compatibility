@@ -1,36 +1,70 @@
 {
-    "name": "browser-compatibility",
-    "displayName": "browser-compatibility",
-    "description": "browser compatibility extension for vscode",
-    "version": "0.0.1",
-    "publisher": "coderw",
-    "engines": {
-        "vscode": "^1.17.0"
-    },
-    "categories": [
-        "Other"
+  "name": "browser-compatibility",
+  "displayName": "browser-compatibility",
+  "description": "browser compatibility extension for vscode",
+  "version": "0.0.1",
+  "publisher": "clam",
+  "engines": {
+    "vscode": "^1.17.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.caniuse",
+    "onCommand:extersion.tscan2es5",
+    "onLanguage:css",
+    "onLanguage:sass",
+    "onLanguage:less",
+    "onLanguage:html",
+    "onLanguage:javascript",
+    "onLanguage:typescript"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.caniuse",
+        "title": "Can I Use"
+      },
+      {
+        "command": "extension.tscan2es5",
+        "title": "typescript can convert to es5"
+      }
     ],
-    "activationEvents": [
-        "onCommand:extension.sayHello"
+    "keybindings": [
+      {
+        "command": "extension.caniuse",
+        "key": "alt+i",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "extension.tscan2es5",
+        "key": "alt+t",
+        "when": "editorHasSelection"
+      }
     ],
-    "main": "./out/extension",
-    "contributes": {
-        "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }]
-    },
-    "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^2.5.3",
-        "vscode": "^1.1.5",
-        "@types/node": "^7.0.43",
-        "@types/mocha": "^2.2.42"
+    "configuration": {
+      "type": "object",
+      "title": "Browser Compatibility configuration",
+      "properties": {}
     }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^2.5.3",
+    "vscode": "^1.1.5",
+    "@types/node": "^7.0.43",
+    "@types/mocha": "^2.2.42"
+  },
+  "dependencies": {
+    "caniuse-api": "^2.0.0",
+    "opn": "^5.3.0"
+  }
 }
